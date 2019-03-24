@@ -1,0 +1,19 @@
+$formLabelColor: #63a724;
+$formLabelFontSize: 14px;
+
+.registration__form {
+  div {
+    &>span.form__label {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      color: $formLabelColor;
+      font-size: $formLabelFontSize;
+    }
+
+    &>input {
+      padding-left: 0px;
+    }
+  }
+}
