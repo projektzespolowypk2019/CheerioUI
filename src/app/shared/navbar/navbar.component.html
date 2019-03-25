@@ -1,0 +1,23 @@
+<nav class="navbar navbar__container">
+  <a class="navbar__logo" href="#">
+    Cheerio
+  </a>
+  <button class="navbar__toggler"
+   type="button"
+   data-toggle="collapse"
+   data-target="#navbarNav"
+   (click)="hamburgerAnimation()">
+    <span [ngClass]="hamburger ? 'bar__top--cross' : 'bar__top'"></span>
+    <span [ngClass]="hamburger ? 'bar__middle--cross' : 'bar__middle'"></span>
+    <span [ngClass]="hamburger ? 'bar__bottom--cross' : 'bar__bottom'"></span>
+  </button>
+  <div class="collapse" id="navbarNav">
+    <ul class="navbar__nav">
+      <li>
+        <a class="nav__link" href="#">
+          Login
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
