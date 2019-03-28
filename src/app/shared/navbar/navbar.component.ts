@@ -6,13 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
   hamburger: Boolean = false;
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  private hamburgerAnimation() {
+  public hamburgerAnimation() {
     this.hamburger = !this.hamburger;
   }
 }

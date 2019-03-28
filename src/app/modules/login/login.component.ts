@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss', './styles/common-styles.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  private goToRegistration() {
+  public goToRegistration() {
     this.router.navigateByUrl(this.router.url + '/registration');
   }
 }
