@@ -1,0 +1,115 @@
+@import './styles/variables.scss';
+@import './styles//mixins.scss';
+
+@include hamburgerToCross(line-bottom, 405deg);
+@include hamburgerToCross(line-top, -45deg);
+
+.navbar__container {
+  background-color: $bgColor;
+
+  @media only screen and (min-width: 992px) {
+    flex-flow: row;
+  }
+
+  .navbar__logo {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    color: $logoColor;
+
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .navbar__toggler {
+    display: none;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    padding: .25rem 0.5rem;
+    cursor: pointer;
+
+    @media only screen and (max-width: 992px) {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:focus {
+      outline: 1px solid $togglerOutlineColor;
+    }
+
+    &>span {
+      position: relative;
+      background: #566973;
+      border-radius: 2px;
+      width: 30px;
+      height: $barHeight;
+      transition: all 0.1s ease;
+    }
+
+    .bar__middle {
+      margin: 7px 0px;
+
+      &--cross {
+        margin: 0px 0px;
+        opacity: 0;
+      }
+    }
+
+    .bar__top {
+      top: 0px;
+
+      &--cross {
+        top: $barHeight;
+        @include animationSettings(line-top, 0.55s, ease, both, 0.25s);
+      }
+    }
+
+    .bar__bottom {
+      bottom: 0px;
+
+      &--cross {
+        bottom: $barHeight;
+        @include animationSettings(line-bottom, 0.55s, ease, both, 0.25s);
+      }
+    }
+  }
+
+  div:last-child {
+    width: 100%;
+
+    @media only screen and (min-width: 992px) {
+      display: flex;
+    }
+
+    .navbar__nav {
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+      display: flex;
+      flex-flow: row;
+
+      @media only screen and (max-width: 992px) {
+        flex-flow: column;
+      }
+    }
+  }
+}
+
+.navbar__nav {
+  li:hover .nav__link {
+    color: $linkHoverColor;
+    transition: all .5s;
+  }
+
+  .nav__link {
+    display: block;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    color: $linkColor;
+  }
+}
