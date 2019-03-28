@@ -1,0 +1,21 @@
+@mixin hamburgerToCross($name, $angle, $edge: center center) {
+  @keyframes #{$name} {
+    from {
+      transform: rotateZ(0deg);
+      transform-origin: $edge;
+    }
+
+    to {
+      transform-origin: $edge;
+      transform: rotateZ($angle);
+    }
+  }
+}
+
+@mixin animationSettings($name, $duration, $function, $mode, $delay: 0s) {
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-delay: $delay;
+  animation-timing-function: $function;
+  animation-fill-mode: $mode;
+}

@@ -1,0 +1,11 @@
+@mixin flexJustifyAlgin($justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin animationContainer($name) {
+  animation-name: $name;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+}
