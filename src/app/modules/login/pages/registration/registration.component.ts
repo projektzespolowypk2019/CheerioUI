@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
   ]
 })
 export class RegistrationComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  private goToLogin() {
+  public goToLogin() {
     this.router.navigateByUrl('/login');
   }
 }
