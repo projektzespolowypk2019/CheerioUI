@@ -6,7 +6,11 @@ const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: AppRoute.LOGIN
+    redirectTo: AppRoute.HOME
+  },
+  {
+    path: AppRoute.HOME,
+    loadChildren: 'src/app/modules/home/home.module#HomeModule'
   },
   {
     path: AppRoute.LOGIN,

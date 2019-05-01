@@ -1,4 +1,5 @@
 export enum AppRoute {
   LOGIN = 'login',
-  REGISTRATION = 'registration'
+  REGISTRATION = 'registration',
+  HOME = 'home'
 }
