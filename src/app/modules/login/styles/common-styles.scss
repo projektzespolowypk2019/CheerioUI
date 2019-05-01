@@ -9,7 +9,7 @@
   position: relative;
   @include flexJustifyAlgin;
   color: $fontColor;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: $fontFamily;
 
   &::before {
     content: '';
@@ -33,7 +33,7 @@
 
   &>div {
     &>h1 {
-      font-family: 'ZCOOL XiaoWei', serif;
+      font-family: $headerFont;
       color: $bannerColor;
       text-align: center;
       line-height: 20px;
