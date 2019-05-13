@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   tmp: boolean;
 
   ngOnInit() {
-    this.categories$ = this.mockService.getCaregories();
+    this.categories$ = this.mockService.getCategories();
     this.recipes$ = this.mockService.getRecipes();
   }
 
@@ -29,6 +29,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
       mirror: true
     });
   }
-
-
 }
