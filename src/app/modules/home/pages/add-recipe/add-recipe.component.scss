@@ -1,0 +1,82 @@
+@import './styles/variables.scss';
+
+.add__container {
+  min-height: 100vh;
+  background: url($mainBgUrl) no-repeat center center fixed;
+  background-size: 100vw 100vh;
+  padding: 20px;
+  position: relative;
+  color: $mainColor;
+  font-size: $mainFontSize;
+  display: flex;
+  flex-flow: row;
+
+  @media only screen and (max-width: 767px) {
+    flex-flow: column;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: $mainBgGradient;
+    opacity: 0.4;
+  }
+
+  .result__container {
+    background-color: rgba(255, 255, 255, 0.75);
+    font-family: $recipeFont;
+    margin: 10px;
+    padding: 10px;
+    color: #000000;
+  }
+}
+
+.result__container {
+  .recipe__ingredients {
+    padding-top: 10px;
+    margin: 0px;
+  }
+}
+
+.main__container,
+.result__container {
+  .recipe__label {
+    display: block;
+    padding: 5px 10px;
+  }
+
+  .recipe__paragraph {
+    font-size: 18px;
+    padding: 10px 0px;
+    margin: 0;
+  }
+
+  .recipe__input,
+  .recipe__textarea {
+    &:focus {
+      border-color: transparent;
+      box-shadow: 0 0 0 0.2rem $inputsBorderColor;
+      transition: 0.5s all ease-out;
+    }
+  }
+
+  .recipe__textarea {
+    min-height: 100px;
+  }
+
+  .recipe__button {
+    margin-top: 30px;
+    background-color: $buttonColor;
+    border: none;
+    transition: 0.5s background-color;
+
+    &:hover {
+      background-color: $buttonColorHover;
+      transition: 0.5s background-color;
+    }
+  }
+}
