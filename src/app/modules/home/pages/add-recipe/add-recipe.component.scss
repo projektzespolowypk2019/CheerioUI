@@ -37,8 +37,20 @@
 
 .result__container {
   .recipe__ingredients {
+    list-style: none;
     padding-top: 10px;
     margin: 0px;
+
+    .fa-times-circle {
+      cursor: pointer;
+      color: $timesColor;
+      transition: 0.5s all;
+
+      &:hover {
+        color: $timesColorHover;
+        transition: 0.5s color;
+      }
+    }
   }
 }
 

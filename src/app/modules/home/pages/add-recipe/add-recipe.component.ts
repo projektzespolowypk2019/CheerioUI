@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-recipe',
@@ -11,6 +11,9 @@ export class AddRecipeComponent implements OnInit {
   recipeGroup: FormGroup;
   ingridientsGroup: FormGroup;
   ingredients: FormArray = this.fb.array([]);
+  desc: string;
+  title: string;
+  quantityRegExp: RegExp = /(\d+(\.\d+)?)/;
 
   constructor(private fb: FormBuilder) { }
 
@@ -21,17 +24,17 @@ export class AddRecipeComponent implements OnInit {
 
   private initRecipeGroup() {
     this.recipeGroup = this.fb.group({
-      title: '',
-      desc: '',
-      ingredients: this.ingredients,
+      title: ['', [Validators.required, Validators.max(100)]],
+      desc: ['', [Validators.required]],
+      ingredients: [this.ingredients, [Validators.required]],
     });
   }
 
   private initIngridientsGroup() {
     this.ingridientsGroup = this.fb.group({
-      name: '',
-      quantity: '',
-      unitId: '',
+      name: ['', [Validators.required, Validators.max(100)]],
+      quantity: [ , [Validators.required, Validators.pattern(this.quantityRegExp)]],
+      unitId: ['', [Validators.required]],
     });
   }
 
@@ -46,9 +49,21 @@ export class AddRecipeComponent implements OnInit {
     });
   }
 
-  addIngridient() {
-    this.ingredients.push(this.setIngridient());
-    this.ingridientsGroup.reset();
-    console.log(this.ingredients.value);
+  addIngridientToArray() {
+    if (this.ingridientsGroup.valid) {
+      this.ingredients.push(this.setIngridient());
+      this.ingridientsGroup.reset();
+    }
+  }
+
+  removeIngridientFromArray(element: HTMLElement) {
+    if (element.className === 'fas fa-times-circle') {
+      this.ingredients.removeAt(parseInt(element.dataset.index, 10));
+    }
+  }
+
+  renderView() {
+    this.title = this.recipeGroup.get('title').value;
+    this.desc = this.recipeGroup.get('desc').value;
   }
 }

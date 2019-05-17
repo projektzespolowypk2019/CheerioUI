@@ -1,22 +1,32 @@
 <section class="add__container">
   <div class="col-12 col-md-5 result__container">
     <p class="text-center recipe__paragraph">
-      Title
+      <ng-container *ngIf="title?.length>0 else subtitle">
+        {{title}}
+      </ng-container>
+      <ng-template #subtitle>
+        Title
+      </ng-template>
     </p>
     <p class="recipe__paragraph">
-      Desc
+      <ng-container *ngIf="desc?.length>0 else fordesc">
+        {{desc}}
+      </ng-container>
+      <ng-template #fordesc>
+        Description
+      </ng-template>
     </p>
     <span class="recipe__label px-0">
       Ingredients :
     </span>
     <ul *ngIf="ingredients.value?.length>0"
-      class="recipe__ingredients">
-      <li *ngFor="let item of ingredients.value; let i = index"
-      attr.data-index={{i}}>
+      class="recipe__ingredients"
+      (click)="removeIngridientFromArray($event.target)">
+      <li *ngFor="let item of ingredients.value; let i = index">
         {{item.name}}
         {{item.quantity}}
         {{item.unitId}}
-        {{i}}
+        <i class="fas fa-times-circle" attr.data-index={{i}}></i>
       </li>
     </ul>
   </div>
@@ -27,6 +37,7 @@
           Title:
         </span>
         <input formControlName="title"
+        (input)="renderView()"
         class="form-control recipe__input"
         type="text">
       </div>
@@ -35,6 +46,7 @@
           Description:
         </span>
         <textarea formControlName="desc"
+        (input)="renderView()"
         class="form-control recipe__textarea"
         type="text">
         </textarea>
@@ -67,7 +79,7 @@
       </div>
     </form>
     <button class="btn btn-primary col-6 recipe__button"
-    (click)="addIngridient()">
+    (click)="addIngridientToArray()">
       Add
     </button>
   </div>
