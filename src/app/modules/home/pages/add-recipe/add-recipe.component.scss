@@ -81,7 +81,7 @@
   }
 
   .recipe__button {
-    margin-top: 30px;
+    margin-top: 15px;
     background-color: $buttonColor;
     border: none;
     transition: 0.5s background-color;
@@ -90,5 +90,16 @@
       background-color: $buttonColorHover;
       transition: 0.5s background-color;
     }
+  }
+
+  .alert__error {
+    display: block;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 5px 5px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    transition: all 1s;
   }
 }

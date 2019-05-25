@@ -60,6 +60,10 @@
         <input formControlName="name"
         class="form-control col-6 recipe__input"
         type="text">
+        <span *ngIf="errorService.errorsIngredientForm.name"
+        class="alert alert__error">
+          {{errorService.errorsIngredientForm.name}}
+        </span>
       </div>
       <div>
         <span class="recipe__label">
@@ -68,6 +72,10 @@
         <input formControlName="quantity"
         class="form-control col-6 recipe__input"
         type="text">
+        <span *ngIf="errorService.errorsIngredientForm.quantity"
+        class="alert alert__error">
+          {{errorService.errorsIngredientForm.quantity}}
+        </span>
       </div>
       <div>
         <span class="recipe__label">
@@ -76,6 +84,10 @@
         <input formControlName="unitId"
         class="form-control col-6 recipe__input"
         type="text">
+        <span *ngIf="errorService.errorsIngredientForm.unitId"
+        class="alert alert__error">
+          {{errorService.errorsIngredientForm.unitId}}
+        </span>
       </div>
     </form>
     <button class="btn btn-primary col-6 recipe__button"

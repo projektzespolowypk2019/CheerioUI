@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
-
+import { ErrorService } from './sevices/errors/error.service';
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -13,9 +13,10 @@ export class AddRecipeComponent implements OnInit {
   ingredients: FormArray = this.fb.array([]);
   desc: string;
   title: string;
-  quantityRegExp: RegExp = /(\d+(\.\d+)?)/;
+  realNumbersRegExp: RegExp = /(\d+(\.\d+)?)/;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    public errorService: ErrorService) { }
 
   ngOnInit() {
     this.initRecipeGroup();
@@ -24,7 +25,7 @@ export class AddRecipeComponent implements OnInit {
 
   private initRecipeGroup() {
     this.recipeGroup = this.fb.group({
-      title: ['', [Validators.required, Validators.max(100)]],
+      title: ['', [Validators.required, Validators.maxLength(100)]],
       desc: ['', [Validators.required]],
       ingredients: [this.ingredients, [Validators.required]],
     });
@@ -32,8 +33,8 @@ export class AddRecipeComponent implements OnInit {
 
   private initIngridientsGroup() {
     this.ingridientsGroup = this.fb.group({
-      name: ['', [Validators.required, Validators.max(100)]],
-      quantity: [ , [Validators.required, Validators.pattern(this.quantityRegExp)]],
+      name: ['', [Validators.required, Validators.max(50)]],
+      quantity: [, [Validators.required, Validators.pattern(this.realNumbersRegExp)]],
       unitId: ['', [Validators.required]],
     });
   }
@@ -53,6 +54,9 @@ export class AddRecipeComponent implements OnInit {
     if (this.ingridientsGroup.valid) {
       this.ingredients.push(this.setIngridient());
       this.ingridientsGroup.reset();
+      this.errorService.clearErrors(this.errorService.errorsIngredientForm);
+    } else {
+      this.errorService.controlValueChangedIngredient(this.ingridientsGroup);
     }
   }
 
