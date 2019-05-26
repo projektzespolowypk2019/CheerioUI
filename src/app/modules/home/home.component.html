@@ -1,8 +1,10 @@
 <main>
   <section class="search__container">
-    <form>
-      <input class="form-control search__input" type="text" placeholder="Entry recipe name">
-      <i class="fas fa-search"></i>
+    <div>
+      <div class="input__container">
+        <input class="form-control search__input" type="text" placeholder="Entry recipe name">
+        <i class="fas fa-search"></i>
+      </div>
       <ng-container *ngIf="(categories$ | async) as categories">
         <div *ngFor="let category of categories">
           <input type="checkbox" id={{category}}>
@@ -11,7 +13,7 @@
           </label>
         </div>
       </ng-container>
-    </form>
+    </div>
   </section>
   <ng-container *ngIf="(recipes$ | async) as recipes">
     <ng-container *ngFor="let recipe of recipes; let i=index; let even=even;">

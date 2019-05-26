@@ -4,7 +4,6 @@ main {
   min-height: 100%;
   background: url($mainBgUrl) no-repeat center center fixed;
   background-size: 100vw 100vh;
-  position: relative;
 }
 
 .search__container {
@@ -17,43 +16,6 @@ main {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-
-    .search__input {
-      display: block;
-      width: 50%;
-      margin-right: 10px;
-      position: relative;
-
-      @media screen and (max-width: 500px) {
-        width: 100%;
-      }
-
-      &:focus {
-        border-color: transparent;
-        box-shadow: 0 0 0 0.2rem rgba(113, 114, 113, 0.25);
-        transition: 0.5s all ease-out;
-
-        & + .fas {
-          color: #717271;
-          transition: all 0.5s;
-        }
-      }
-
-      & + .fas {
-        position: absolute;
-        top: 33px;
-        right: calc(50% + 10px);
-        transform: translate(0, 50%);
-        color: #76a748;
-        transition: color 0.5s;
-        cursor: pointer;
-
-        @media screen and (max-width: 500px) {
-          right: 40px;
-          top: 25px;
-        }
-      }
-    }
 
     label {
       margin: 10px 10px;
@@ -71,7 +33,7 @@ main {
       }
     }
 
-    div > input {
+    input:not(.search__input) {
       position: absolute;
       left: -15px;
       opacity: 1;
@@ -82,6 +44,43 @@ main {
         transition: 1s all;
       }
     }
+  }
+}
+
+.search__input {
+  display: block;
+  margin-right: 10px;
+  width: 100%;
+
+  &:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 0.2rem rgba(113, 114, 113, 0.25);
+    transition: 0.5s all ease-out;
+
+    & + .fas {
+      color: #717271;
+      transition: all 0.5s;
+    }
+  }
+}
+
+.input__container {
+  position: relative;
+  width: 50%;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+
+  & > .fas {
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    color: #76a748;
+    transition: color 0.5s;
+    cursor: pointer;
   }
 }
 

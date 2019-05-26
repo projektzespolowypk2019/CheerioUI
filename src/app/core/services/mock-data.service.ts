@@ -86,7 +86,7 @@ export class MockDataService {
     return of(this.mockRecipes);
   }
 
-  getCaregories(): Observable<string[]> {
+  getCategories(): Observable<string[]> {
     return of(this.mockCategories);
   }
 }
