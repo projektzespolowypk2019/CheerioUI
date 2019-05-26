@@ -1,7 +1,9 @@
+import {RecipeIngredientModel} from "./recipe-ingredient.model";
+
 export interface RecipeModel {
-  id?: number;
-  author?: string;
-  title: string;
-  desc: string;
-  components: Array<string>;
+  id?: string;
+  name: string;
+  author: string;
+  description: string;
+  recipeIngredientSet: Array<RecipeIngredientModel>
 }

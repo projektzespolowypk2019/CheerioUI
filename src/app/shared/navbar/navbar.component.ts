@@ -8,21 +8,21 @@ import { AppRoute } from '../../app.route';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   hamburger: Boolean = false;
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  private hamburgerAnimation() {
+  public hamburgerAnimation() {
     this.hamburger = !this.hamburger;
   }
 
-  private goToLogin() {
+  public goToLogin() {
     this.router.navigateByUrl('/' + AppRoute.LOGIN);
   }
 
-  private goToHome() {
+  public goToHome() {
     this.router.navigateByUrl('/' + AppRoute.HOME);
   }
 }
