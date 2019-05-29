@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ErrorService {
   };
 
   errorsIngredientForm = {
-    name: '',
+    ingredientId: '',
     quantity: '',
     unitId: '',
   };
@@ -30,9 +30,8 @@ export class ErrorService {
   };
 
   ingredientValidationMessage = {
-    name: {
-      required: 'Name is required.',
-      maxLenght: 'Name must have a maximum of 50 characters.',
+    ingredientId: {
+      required: 'Name is required.'
     },
     quantity: {
       required: 'Quantity is required.',
