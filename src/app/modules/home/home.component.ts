@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import AOS from 'aos';
-import { MockDataService } from '../../core/services/mock-data.service';
 import { RecipeModel } from '../../shared/models/recipe.model';
 import { Observable } from 'rxjs';
 
@@ -10,16 +9,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  constructor(private mockService: MockDataService) { }
+  constructor() { }
 
   recipes$: Observable<RecipeModel[]>;
   categories$: Observable<string[]>;
   tmp: boolean;
 
-  ngOnInit() {
-    this.categories$ = this.mockService.getCategories();
-    this.recipes$ = this.mockService.getRecipes();
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     AOS.init({
