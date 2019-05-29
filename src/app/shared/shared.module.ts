@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [NavbarComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,
