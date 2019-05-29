@@ -1,16 +1,18 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpResponse} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {server} from "../../../../environments/api-environment";
-import {RecipeModel} from "../../../shared/models/recipe.model";
-import {recipes} from "../api-routes";
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpResponse } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { server } from "../../../../environments/api-environment";
+import { RecipeModel } from "../../../shared/models/recipe.model";
+import { recipes } from "../api-routes";
+import { HeadersService } from '../headers/headers.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private headers: HeadersService) {
   }
 
   findAll(): Observable<Array<RecipeModel>> {
@@ -23,8 +25,11 @@ export class RecipeService {
     return this.http.post<RecipeModel>(
       server.address + recipes.uri,
       recipe,
-      {observe: 'response'}
-    )
+      {
+        headers: this.headers.getContentType('application/json'),
+        observe: 'response'
+      }
+    );
   }
 
 }
