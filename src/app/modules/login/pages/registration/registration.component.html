@@ -5,47 +5,38 @@
         Cheerio
       </h1>
     </div>
-    <form class="registration__form">
+    <form [formGroup]="registerGroup" (submit)="register()" class="registration__form">
       <div>
         <span class="form__label">
           Email
         </span>
-        <input formControlName="email"
-        placeholder="Email addess..."
-        type="email" />
+        <input formControlName="email" placeholder="Email addess..." type="email" />
         <span></span>
       </div>
       <div>
         <span class="form__label">
           Username
         </span>
-        <input formControlName="email"
-        placeholder="Username..."
-        type="email" />
+        <input formControlName="login" placeholder="Username..." type="text" />
         <span></span>
       </div>
       <div>
         <span class="form__label">
           Password
         </span>
-        <input formControlName="password"
-        placeholder="Password..."
-        type="password" />
+        <input formControlName="password" placeholder="Password..." type="password" />
         <span></span>
       </div>
       <div>
         <span class="form__label">
           Confirm password
         </span>
-        <input formControlName="password"
-        placeholder="Password..."
-        type="password" />
+        <input formControlName="repeatPassword" placeholder="Repeat password..." type="password" />
         <span></span>
       </div>
       <div class="form__container">
         <div>
-          <button class="btn form__container--btn"
-          type="submit">
+          <button class="btn form__container--btn" type="submit">
             Sign Up
           </button>
         </div>
