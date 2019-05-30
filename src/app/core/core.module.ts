@@ -19,7 +19,7 @@ import { HeadersService } from './http/headers/headers.service';
     RecipeService,
     UnitService,
     UserService,
-    RecipeWithIngredientsService
+    RecipeWithIngredientsService,
     HeadersService
   ]
 })
