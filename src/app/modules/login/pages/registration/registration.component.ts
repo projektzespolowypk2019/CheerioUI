@@ -42,7 +42,7 @@ export class RegistrationComponent implements OnInit {
       password: this.registerGroup.get('password').value
     };
 
-    const response = await this.userService.register(registerModel);
-    console.log(response);
+    const response = await this.userService.register(registerModel).toPromise();
+    this.goToLogin();
   }
 }
