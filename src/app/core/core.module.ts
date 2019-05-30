@@ -1,3 +1,4 @@
+import { RecipeWithIngredientsService } from './http/recipe-with-ingredients/recipe-with-ingredients.service';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
@@ -18,6 +19,7 @@ import { HeadersService } from './http/headers/headers.service';
     RecipeService,
     UnitService,
     UserService,
+    RecipeWithIngredientsService,
     HeadersService
   ]
 })
