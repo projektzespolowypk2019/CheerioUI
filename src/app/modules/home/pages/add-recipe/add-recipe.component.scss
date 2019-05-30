@@ -67,7 +67,7 @@
     margin: 0;
   }
 
-  .recipe__input,
+  .recipe__select,
   .recipe__textarea {
     &:focus {
       border-color: transparent;
@@ -92,6 +92,25 @@
     }
   }
 
+  .scrollable__select {
+    height: 120px;
+    overflow: auto;
+  }
+
+  .recipe__select {
+    overflow-y: auto;
+
+    & > option {
+      background-color: $optionColorHover;
+    }
+
+    & + .fa-plus-circle {
+      font-size: 40px;
+      color: $buttonColorLighter;
+      cursor: pointer;
+    }
+  }
+
   .alert__error {
     display: block;
     color: #721c24;
@@ -101,5 +120,13 @@
     margin-top: 10px;
     margin-bottom: 0px;
     transition: all 1s;
+  }
+}
+
+.recipe__input {
+  &:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 0.2rem $inputsBorderColor;
+    transition: 0.5s all ease-out;
   }
 }

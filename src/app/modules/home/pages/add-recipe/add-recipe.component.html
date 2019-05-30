@@ -19,16 +19,16 @@
     <span class="recipe__label px-0">
       Ingredients :
     </span>
-    <ul *ngIf="ingredients.value?.length>0"
+    <ul *ngIf="ingredientsAdded.value?.length>0"
       class="recipe__ingredients"
-      (click)="removeIngridientFromArray($event.target)">
-      <li *ngFor="let item of ingredients.value; let i = index">
-        {{item.name}}
+      (click)="removeIngredientFromArray($event.target)">
+      <li *ngFor="let item of ingredientsAdded.value; let i = index;">
+        {{nameIngredientsAdded[i]}}
         {{item.quantity}}
-        {{item.unitId}}
         <i class="fas fa-times-circle" attr.data-index={{i}}></i>
       </li>
     </ul>
+    <button type="button" class="btn btn-success" (click)="addRecipe()" [disabled]="recipeGroup.invalid">Send</button>
   </div>
   <div class="col-12 col-md-7 main__container">
     <form [formGroup]="recipeGroup">
@@ -52,17 +52,29 @@
         </textarea>
       </div>
     </form>
-    <form [formGroup]="ingridientsGroup">
+    <form [formGroup]="ingredientsGroup">
       <div>
         <span class="recipe__label">
           Ingredient:
         </span>
-        <input formControlName="name"
-        class="form-control col-6 recipe__input"
-        type="text">
-        <span *ngIf="errorService.errorsIngredientForm.name"
+        <div class="row no-gutters d-flex align-items-center">
+        <select formControlName="ingredientId"
+        class="form-control col-6 recipe__select px-2">
+          <option selected disabled hidden value="">
+            Choose ingredient
+          </option>
+          <ng-container *ngIf="(ingredients$ | async) as ingredients">
+            <option *ngFor="let item of ingredients"
+            value={{item.id}}>
+              {{item.name}}
+            </option>
+          </ng-container>
+        </select>
+        <i class="fas fa-plus-circle pl-2" data-toggle="modal" data-target="#newIngredient"></i>
+      </div>
+        <span *ngIf="errorService.errorsIngredientForm.ingredientId"
         class="alert alert__error">
-          {{errorService.errorsIngredientForm.name}}
+          {{errorService.errorsIngredientForm.ingredientId}}
         </span>
       </div>
       <div>
@@ -81,9 +93,20 @@
         <span class="recipe__label">
           Unit measure:
         </span>
-        <input formControlName="unitId"
-        class="form-control col-6 recipe__input"
-        type="text">
+        <div class="select__scrollable">
+          <select formControlName="unitId"
+          class="form-control col-6 recipe__select">
+            <option selected disabled hidden value="">
+              Choose unit
+            </option>
+            <ng-container *ngIf="(unitsMeasure$ | async) as unitsMeasure">
+              <option *ngFor="let item of unitsMeasure"
+              value={{item.id}}>
+                {{item.name}}
+              </option>
+            </ng-container>
+          </select>
+        </div>
         <span *ngIf="errorService.errorsIngredientForm.unitId"
         class="alert alert__error">
           {{errorService.errorsIngredientForm.unitId}}
@@ -91,8 +114,30 @@
       </div>
     </form>
     <button class="btn btn-primary col-6 recipe__button"
-    (click)="addIngridientToArray()">
+    (click)="addIngredientToArray()">
       Add
     </button>
   </div>
 </section>
+<!--Modal for adding new ingredient-->
+<div class="modal fade" id="newIngredient" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add a new ingredient</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="ingredientGroup"
+        class="modal-body">
+            <input formControlName="name"
+            class="form-control col-12 recipe__input" placeholder="Entry name"/>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" (click)="addNewIngredient()">Add</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
