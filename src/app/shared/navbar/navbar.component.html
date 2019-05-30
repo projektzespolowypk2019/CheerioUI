@@ -1,5 +1,5 @@
 <nav class="navbar navbar__container">
-  <a class="navbar__logo" href="#">
+  <a class="navbar__logo" (click)="goToHome()">
     Cheerio
   </a>
   <button class="navbar__toggler"
@@ -14,7 +14,7 @@
   <div class="collapse" id="navbarNav">
     <ul class="navbar__nav">
       <li>
-        <a class="nav__link" href="#">
+        <a class="nav__link" (click)="goToLogin()">
           Login
         </a>
       </li>

@@ -1,0 +1,272 @@
+@import './styles/variable.scss';
+
+main {
+  min-height: 100%;
+  background: url($mainBgUrl) no-repeat center center fixed;
+  background-size: 100vw 100vh;
+}
+
+.search__container {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  background-color: $searchContainerBg;
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    label {
+      margin: 10px 10px;
+      position: relative;
+      background: transparent;
+      border: 2px solid #ffffff;
+      color: #ffffff;
+      padding: 5px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 1s all;
+
+      &:hover {
+        border-color: #717271;
+      }
+    }
+
+    input:not(.search__input) {
+      position: absolute;
+      left: -15px;
+      opacity: 1;
+
+      &:checked + label {
+        background: #717271;
+        border: 2px solid #717271;
+        transition: 1s all;
+      }
+    }
+  }
+}
+
+.search__input {
+  display: block;
+  margin-right: 10px;
+  width: 100%;
+
+  &:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 0.2rem rgba(113, 114, 113, 0.25);
+    transition: 0.5s all ease-out;
+
+    & + .fas {
+      color: #717271;
+      transition: all 0.5s;
+    }
+  }
+}
+
+.input__container {
+  position: relative;
+  width: 50%;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+
+  & > .fas {
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    color: #76a748;
+    transition: color 0.5s;
+    cursor: pointer;
+  }
+}
+
+.recipes__container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  @media screen and (max-width: 992px) {
+    height: 100%;
+    flex-flow: column;
+  }
+
+  &:nth-child(2n + 1) > .recipe {
+    &:first-child {
+      padding-right: 100px;
+
+      @media screen and (max-width: 992px) {
+        padding: 20px;
+      }
+    }
+  }
+
+  &:nth-child(2n) > .recipe {
+    &:last-child {
+      padding-left: 100px;
+
+      @media screen and (max-width: 992px) {
+        padding: 20px;
+      }
+    }
+  }
+
+  & > .recipe {
+    min-height: calc(100vh - 46px);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100px;
+
+      @media screen and (max-width: 992px) {
+        display: none;
+      }
+    }
+
+    // odd recipes__container
+    &:first-child {
+      width: calc(50% + 50px);
+      background: $recipeContainerOddBg;
+      z-index: 2;
+
+      @media screen and (max-width: 992px) {
+        width: 100%;
+      }
+
+      &::before {
+        right: -100px;
+        border-left: 100px solid $recipeContainerOddBg;
+        border-bottom: 200vh solid transparent;
+
+        @media screen and (max-width: 992px) {
+          display: none;
+        }
+      }
+
+      .recipe__show {
+        margin-right: 50px;
+
+        @media screen and (max-width: 992px) {
+          margin-right: 0px;
+        }
+      }
+    }
+
+    &:last-child {
+      width: calc(50% - 50px);
+      background: $recipeContainerEveBg;
+      z-index: 3;
+      color: #ffffff;
+
+      @media screen and (max-width: 992px) {
+        width: 100%;
+      }
+
+      &::before {
+        left: -100px;
+        border-left: 100px solid transparent;
+        border-bottom: 200vh solid $recipeContainerEveBg;
+
+        @media screen and (max-width: 992px) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  // even recipes__container
+  @media screen and (min-width: 993px) {
+    &:nth-child(2n) > .recipe {
+      &:first-child {
+        width: calc(50% - 50px);
+        z-index: 3;
+        background: $recipeContainerEveBg;
+        color: #ffffff;
+
+        &::before {
+          border-left: none;
+          border-right: 100px solid transparent;
+          border-bottom: 200vh solid $recipeContainerEveBg;
+        }
+
+        .recipe__show {
+          margin-right: 0px;
+        }
+      }
+
+      &:last-child {
+        width: calc(50% + 50px);
+        z-index: 2;
+        background: $recipeContainerOddBg;
+        color: inherit;
+
+        &::before {
+          border-top: 200vh solid $recipeContainerOddBg;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+.recipe {
+  padding: 20px;
+  font-family: $titleFont;
+
+  &__title {
+    display: block;
+    width: 100%;
+    font-size: 26px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  &__desc {
+    max-height: 280px;
+    padding: 20px 0px;
+    font-size: 20px;
+    text-align: justify;
+  }
+
+  &__components {
+    span {
+      display: block;
+      height: 40px;
+      width: 100%;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    ul {
+      min-height: 140px;
+      margin: 0px;
+      padding-top: 20px;
+      font-size: 20px;
+      overflow: hidden;
+    }
+  }
+
+  &__show {
+    float: right;
+    height: 30px;
+    padding: 0px 20px;
+    background-color: $buttonBg;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: $buttonFontColor;
+    transition: all 1s;
+
+    &:hover {
+      background-color: $buttonBgHover;
+    }
+  }
+}
